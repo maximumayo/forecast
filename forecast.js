@@ -34,8 +34,9 @@ $(document).ready(function () {
                     var image = '<img src=' + data.current_observation.icon_url + '>';
                     var desc = '<p>' + data.current_observation.weather + '</p>';
                     var wind = '<p>Wind ' + data.current_observation.wind_string + '</p>';
+                    var updated = '<p>' + data.current_observation.observation_time + '</p>';
                     //clear out display div before appending
-                    $('#display').html("").append(loc, temp, image, desc, wind, sunrise, sunset);
+                    $('#display').html("").append(loc, temp, image, desc, wind, sunrise, sunset, updated);
                     //clear out zip input after go is clicked
                     $('#zipcode').val('');
                 }
