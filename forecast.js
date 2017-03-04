@@ -20,7 +20,6 @@ function getWeatherInfo() {
         type: 'GET',
         dataType: "jsonp",
         success: function (data) {
-
             //format temp
             var tempRound = Math.round(data.current_observation.temp_f);
 
@@ -41,19 +40,23 @@ function getWeatherInfo() {
             setMin = (setMin < 10 ? "0" : "") + setMin;
 
             //variables to store info to be display
-            var sunrise = '<p>Sunrise: ' + riseHour + ":" + riseMin + " " + ampm + '</p>';
-            var sunset = '<p>Sunset: ' + setHour + ":" + setMin + " " + ampm2 + '</p>';
-            var loc = '<h3>' + data.current_observation.display_location.full + '</h3>';
+            var sunrise = '<p><span class="category">Sunrise</span> ' + riseHour + ":" + riseMin + " " + ampm + '</p>';
+            var sunset = '<p><span class="category">Sunset</span> ' + setHour + ":" + setMin + " " + ampm2 + '</p>';
+            var loc = '<p>' + data.current_observation.display_location.full + '</p>';
             var temp = '<h2>' + tempRound + '˚F </h2>';
             var image = '<img src=' + data.current_observation.icon_url + '>';
             var desc = '<p>' + data.current_observation.weather + '</p>';
-            var wind = '<p>Wind ' + data.current_observation.wind_string + '</p>';
+            var wind = '<p><span class="category">Wind Speed</span> ' + data.current_observation.wind_dir + " "
+                + data.current_observation.wind_mph + " mph" + '</p>';
             var updated = '<p>' + data.current_observation.observation_time + '</p>';
+            var visible = '<p><span class="category">Visibility</span> ' + data.current_observation.visibility_mi + " mi" + '</p>';
+            var humidity = '<p><span class="category">Humidity</span> ' + data.current_observation.relative_humidity + '</p>';
+            var dew = '<p><span class="category">Dewpoint</span> ' + data.current_observation.dewpoint_string + '</p>';
 
             //clear out display div before appending
-            $('#display').html("").append(loc, temp, image, desc, wind, sunrise, sunset, updated);
+            $('#display').html("").append(loc, image, temp, desc, humidity, wind, dew, visible, sunrise, sunset, updated);
 
-            //clear out zip input after go is clicked
+            //clear out zip input after go btn is clicked
             $('#zipcode').val('');
         }
     })

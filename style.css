@@ -10,3 +10,7 @@ body {
 #submit {
     width: 4em;
 }
+
+.category {
+    font-weight: bold;
+}
